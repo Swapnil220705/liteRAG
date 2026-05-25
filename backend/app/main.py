@@ -11,10 +11,13 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
-UPLOAD_DIR = DATA_DIR / "uploads"
-ARTIFACT_DIR = DATA_DIR / "artifacts"
-
 load_dotenv(BASE_DIR / ".env")
+
+UPLOAD_DIR = Path(os.getenv("UPLOAD_DIR", str(DATA_DIR / "uploads")))
+ARTIFACT_DIR = Path(os.getenv("ARTIFACT_DIR", str(DATA_DIR / "artifacts")))
+
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
 
 from app.ingestion import PDFIngestor
 from app.chunking import SemanticChunker
@@ -27,7 +30,7 @@ from app.generation import AnswerGenerator
 from app.query_processing import QueryProcessor
 from app.logging_utils import log_event
 from app.hybrid_ingestion import process_documents as hybrid_process_documents, write_v2_artifact
-from app.artifact_store import ArtifactStore
+from app.artifact_store import create_artifact_store
 
 app = FastAPI(title="liteRAG API")
 
@@ -54,7 +57,7 @@ query_processor = QueryProcessor()
 
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
-artifact_store = ArtifactStore()
+artifact_store = create_artifact_store()
 
 class QueryRequest(BaseModel):
     query: str

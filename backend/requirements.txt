@@ -13,3 +13,4 @@ pdfplumber
 langdetect
 transformers
 torch
+sqlalchemy
