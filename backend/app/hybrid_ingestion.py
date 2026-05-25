@@ -1096,19 +1096,20 @@ class HybridIngestionPipeline:
 
         return self.run_from_documents(documents, pdf_path=pdf_path, file_id=file_id)
 
-    def save(self, artifact: Dict) -> None:
+    def save(self, artifact: Dict, output_path: Optional[Path] = None) -> None:
         """
-        Writes the artifact to OUTPUT_PATH.
-        Aborts if output path collides with any protected file (defensive check).
+        Writes the artifact to OUTPUT_PATH or to the provided output path.
+        Aborts if the selected output path collides with any protected file.
         """
-        if OUTPUT_PATH in PROTECTED_PATHS:
+        destination = Path(output_path) if output_path else OUTPUT_PATH
+        if destination in PROTECTED_PATHS:
             raise RuntimeError(
-                f"ABORT: OUTPUT_PATH {OUTPUT_PATH} is protected. Will not write."
+                f"ABORT: OUTPUT_PATH {destination} is protected. Will not write."
             )
-        OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-        with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with open(destination, "w", encoding="utf-8") as f:
             json.dump(artifact, f, indent=2, ensure_ascii=False)
-        log.info(f"✓ Artifact written → {OUTPUT_PATH}")
+        log.info(f"✓ Artifact written → {destination}")
         log.info(
             f"  Sections: {artifact['stats']['total_sections']} | "
             f"Tables: {artifact['stats']['total_tables']} | "
@@ -1207,13 +1208,14 @@ def process_documents(
     return pipeline.run_from_documents(documents, pdf_path=pdf_path, file_id=file_id)
 
 
-def write_v2_artifact(artifact: Dict) -> None:
+def write_v2_artifact(artifact: Dict, output_path: Optional[str] = None) -> None:
     """
-    Writes the v2 artifact to OUTPUT_PATH (backend/data/knowledge_artifact_v2.json).
+    Writes the v2 artifact to OUTPUT_PATH (backend/data/knowledge_artifact_v2.json)
+    unless an explicit output_path is provided.
     Never touches knowledge_artifact.json or metadata.json.
     """
     pipeline = HybridIngestionPipeline()
-    pipeline.save(artifact)
+    pipeline.save(artifact, output_path=Path(output_path) if output_path else None)
 
 
 # ===========================================================================

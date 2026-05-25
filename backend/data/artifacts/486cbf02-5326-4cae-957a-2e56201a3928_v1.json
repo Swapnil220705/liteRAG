@@ -1,0 +1,1477 @@
+{
+  "file_id": "486cbf02-5326-4cae-957a-2e56201a3928",
+  "original_size": 5759831,
+  "total_chunks": 86,
+  "chunks": [
+    {
+      "id": 0,
+      "page": 1,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 1,
+      "page": 2,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "toc",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "page": 3,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "page": 4,
+      "distilled": {
+        "s": null,
+        "k": [
+          "fig",
+          "chandrapur",
+          "district",
+          "showing",
+          "photograph"
+        ],
+        "c": [
+          [
+            "trenching",
+            "is",
+            "done dgm"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 4,
+      "page": 5,
+      "distilled": {
+        "s": null,
+        "k": [
+          "chandrapur",
+          "district",
+          "fig",
+          "govindpur",
+          "showing"
+        ],
+        "c": [
+          [
+            "microphotograph showing fibrolite",
+            "is",
+            "replaced muscovite quartz fibrolite mylonite"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 5,
+      "page": 6,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 6,
+      "page": 7,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 7,
+      "page": 8,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 8,
+      "page": 9,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 9,
+      "page": 10,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 10,
+      "page": 11,
+      "distilled": {
+        "s": "Total soil samples are analysed and detected base metal.",
+        "k": [
+          "ppm",
+          "values",
+          "samples",
+          "ppb",
+          "quartz"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 11,
+      "page": 12,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 12,
+      "page": 13,
+      "distilled": {
+        "s": "The area around Bothli in general is a flat terrain except for two hills comprising.",
+        "k": [
+          "silicified",
+          "western",
+          "bothli",
+          "comprises",
+          "depth"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 13,
+      "page": 14,
+      "distilled": {
+        "s": "Map govindpur and bothli areas are prepared grid.",
+        "k": [
+          "samples",
+          "collected",
+          "govindpur",
+          "nos",
+          "bothli"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 14,
+      "page": 15,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "metadata",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 15,
+      "page": 16,
+      "distilled": {
+        "s": "Gneisses are overlain sandstone and quartzite equated.",
+        "k": [
+          "penganga",
+          "quartz",
+          "sandstone",
+          "trending",
+          "group"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 16,
+      "page": 17,
+      "distilled": {
+        "s": null,
+        "k": [
+          "group",
+          "archaean",
+          "penganga",
+          "quartz",
+          "bengpal"
+        ],
+        "c": [
+          [
+            "trend",
+            "is",
+            "also observed"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 17,
+      "page": 18,
+      "distilled": {
+        "s": "Out exposure tourmaline quartz vein is noticed the northeast old working.",
+        "k": [
+          "quartz",
+          "tourmaline",
+          "composed",
+          "exposed",
+          "exposure"
+        ],
+        "c": [
+          [
+            "out exposure tourmaline quartz vein",
+            "is",
+            "noticed the northeast old working"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 18,
+      "page": 19,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 19,
+      "page": 20,
+      "distilled": {
+        "s": "Form disseminations stringers and veins are noticed bothli the silicified zone.",
+        "k": [
+          "bothli",
+          "silicified",
+          "noticed",
+          "samples",
+          "sheared"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 20,
+      "page": 21,
+      "distilled": {
+        "s": "Mineralisation is essentially structurally controlled confined shear.",
+        "k": [
+          "mineralisation",
+          "fracture",
+          "metapelites",
+          "quartz",
+          "rock"
+        ],
+        "c": [
+          [
+            "mineralisation",
+            "is",
+            "essentially structurally controlled confined shear"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 21,
+      "page": 22,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 22,
+      "page": 23,
+      "distilled": {
+        "s": "Places quartz crushed is noticed fig.",
+        "k": [
+          "quartz",
+          "shearing",
+          "abundance",
+          "aggregates",
+          "brittle"
+        ],
+        "c": [
+          [
+            "places quartz crushed",
+            "is",
+            "noticed fig"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 23,
+      "page": 24,
+      "distilled": {
+        "s": "Early phase is marked chalcopyrite.",
+        "k": [
+          "chalcopyrite",
+          "mineralization",
+          "occurs",
+          "phase",
+          "covellite"
+        ],
+        "c": [
+          [
+            "early phase",
+            "is",
+            "marked chalcopyrite"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 24,
+      "page": 25,
+      "distilled": {
+        "s": "Geochemistry whole rock analysis samples are received.",
+        "k": [
+          "analysis",
+          "samples",
+          "x-rd",
+          "amphibolite",
+          "carried"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 25,
+      "page": 26,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 26,
+      "page": 27,
+      "distilled": {
+        "s": "Low high chargeability associated is observed around the stations e10.",
+        "k": [
+          "chargeability",
+          "resistivity",
+          "high",
+          "low",
+          "traverses"
+        ],
+        "c": [
+          [
+            "low high chargeability associated",
+            "is",
+            "observed around the stations e10"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 27,
+      "page": 27,
+      "distilled": {
+        "s": "Order ohm and chargeability along are suggested.",
+        "k": [
+          "along",
+          "mineralisation",
+          "traverses",
+          "chargeability",
+          "depth"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 28,
+      "page": 28,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 29,
+      "page": 29,
+      "distilled": {
+        "s": "CR 022615 18 \uf0d8 In Govindpur block the possibility of occurrence of copper mineralisation is.",
+        "k": [
+          "mineralisation",
+          "chargeability",
+          "block",
+          "increase",
+          "limited"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 30,
+      "page": 30,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 31,
+      "page": 31,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "metadata",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 32,
+      "page": 32,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 33,
+      "page": 32,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 34,
+      "page": 33,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 35,
+      "page": 33,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 36,
+      "page": 34,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 37,
+      "page": 34,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 38,
+      "page": 35,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 39,
+      "page": 35,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 40,
+      "page": 36,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 41,
+      "page": 36,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 42,
+      "page": 37,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 43,
+      "page": 37,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 44,
+      "page": 38,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 45,
+      "page": 39,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 46,
+      "page": 40,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 47,
+      "page": 41,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 48,
+      "page": 41,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 49,
+      "page": 42,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 50,
+      "page": 42,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 51,
+      "page": 43,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 52,
+      "page": 43,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 53,
+      "page": 44,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 54,
+      "page": 45,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 55,
+      "page": 46,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 56,
+      "page": 47,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 57,
+      "page": 48,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 58,
+      "page": 49,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 59,
+      "page": 50,
+      "distilled": {
+        "s": null,
+        "k": [
+          "chandrapur",
+          "district",
+          "working",
+          "bothli",
+          "cr-022615"
+        ],
+        "c": [
+          [
+            "trenching",
+            "is",
+            "done dgm"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 60,
+      "page": 51,
+      "distilled": {
+        "s": "Photograph show Sulphides mineralisation in the silicified zones at Bothli Chandrapur District (55P/11).",
+        "k": [
+          "chandrapur",
+          "district",
+          "photograph",
+          "bothli",
+          "cr-022615"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 61,
+      "page": 52,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 62,
+      "page": 53,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 63,
+      "page": 54,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 64,
+      "page": 55,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 65,
+      "page": 56,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 66,
+      "page": 57,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 67,
+      "page": 58,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 68,
+      "page": 59,
+      "distilled": {
+        "s": "Fibrolite is replaced muscovite quartz fibrolite mylonite.",
+        "k": [
+          "mylonite",
+          "quartz-fibrolite",
+          "cr-022615",
+          "fibrolite",
+          "fibrolitein"
+        ],
+        "c": [
+          [
+            "fibrolite",
+            "is",
+            "replaced muscovite quartz fibrolite mylonite"
+          ]
+        ],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 2
+        }
+      }
+    },
+    {
+      "id": 69,
+      "page": 60,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 70,
+      "page": 61,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 71,
+      "page": 62,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 72,
+      "page": 63,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 73,
+      "page": 64,
+      "distilled": {
+        "s": "Pyrite replacing chalcopyrite quartz vein shows replacement texture, Bothli area (10x ppl).",
+        "k": [
+          "chalcopyrite",
+          "covellite",
+          "cr-022615",
+          "fig-35",
+          "fig-36"
+        ],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 2,
+          "keyword_score": 2,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 74,
+      "page": 65,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 75,
+      "page": 66,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 76,
+      "page": 67,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 77,
+      "page": 68,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 78,
+      "page": 69,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 79,
+      "page": 70,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 80,
+      "page": 71,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 81,
+      "page": 72,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 82,
+      "page": 73,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 83,
+      "page": 74,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 84,
+      "page": 75,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    },
+    {
+      "id": 85,
+      "page": 76,
+      "distilled": {
+        "s": null,
+        "k": [],
+        "c": [],
+        "chunk_type": "content",
+        "quality": {
+          "summary_score": 0,
+          "keyword_score": 0,
+          "concept_score": 0
+        }
+      }
+    }
+  ]
+}

@@ -414,6 +414,7 @@ const ArtifactPanel = ({ session, artifactState, onDownload }) => {
 function App() {
   const [session, setSession] = useState(() => loadStoredSession());
   const [artifactState, setArtifactState] = useState({ status: 'idle', size: null, originalSize: null, fetchedFor: null });
+  const [artifacts, setArtifacts] = useState([]);
   const [status, setStatus] = useState('checking'); // checking, idle, uploading, ready
   const [uploadStages, setUploadStages] = useState([]);
   const [messages, setMessages] = useState([]);
@@ -445,6 +446,17 @@ function App() {
     saveStoredSession(nextSession);
   };
 
+  const loadArtifacts = async () => {
+    try {
+      const response = await fetch(`${API_BASE}/artifacts`);
+      if (!response.ok) throw new Error('Failed to fetch artifacts');
+      const data = await response.json();
+      setArtifacts(Array.isArray(data.artifacts) ? data.artifacts : []);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     if (status !== 'ready' || !session.id) return;
 
@@ -462,25 +474,26 @@ function App() {
       }
 
       try {
-        const response = await fetch(`${API_BASE}/artifact/status`);
+        const response = await fetch(`${API_BASE}/artifact/status?file_id=${session.id}`);
         if (!response.ok) throw new Error('Artifact status unavailable');
 
         const data = await response.json();
         console.log('/artifact/status', data);
         if (cancelled) return;
 
-        if (data.ready) {
+        if (data.ready && data.artifact) {
+          const artifact = data.artifact;
           const resolvedSession = {
             ...session,
-            id: data.file_id || session.id,
-            originalSize: data.original_size || session.originalSize || null,
-            artifactSize: data.artifact_size || null,
+            id: artifact.file_id || session.id,
+            originalSize: artifact.original_size || session.originalSize || null,
+            artifactSize: artifact.artifact_v2_size || artifact.artifact_v1_size || null,
           };
 
           setArtifactState({
             status: 'ready',
-            size: data.artifact_size || null,
-            originalSize: data.original_size || null,
+            size: artifact.artifact_v2_size || artifact.artifact_v1_size || null,
+            originalSize: artifact.original_size || null,
             fetchedFor: resolvedSession.id,
           });
           setSession(resolvedSession);
@@ -491,7 +504,7 @@ function App() {
         setArtifactState({
           status: 'loading',
           size: null,
-          originalSize: data.original_size || session.originalSize || null,
+          originalSize: session.originalSize || null,
           fetchedFor: session.id,
         });
       } catch (err) {
@@ -546,6 +559,7 @@ function App() {
     };
 
     initializeFromBackend();
+    loadArtifacts();
 
     return () => {
       cancelled = true;
@@ -599,10 +613,17 @@ function App() {
           id: data.file_id || Date.now(),
           documentName: uploadedFile.name,
           originalSize: uploadedFile.size,
-          artifactSize: null,
+          artifactSize: data.artifact_v2_size || data.artifact_v1_size || null,
         };
         syncSession(nextSession);
+        setArtifactState({
+          status: 'ready',
+          size: data.artifact_v2_size || data.artifact_v1_size || null,
+          originalSize: uploadedFile.size,
+          fetchedFor: nextSession.id,
+        });
         setStatus('ready');
+        loadArtifacts();
       }, 500);
 
     } catch (err) {
@@ -695,33 +716,31 @@ function App() {
   };
 
   const handleDownloadArtifact = async () => {
-    if (artifactState.status !== 'ready') return;
+    if (artifactState.status !== 'ready' || !session.id) return;
+    await downloadArtifactById(session.id, 'v2');
+  };
+
+  const downloadArtifactById = async (fileId, version = 'v2') => {
+    if (!fileId) return;
 
     try {
-      const response = await fetch(`${API_BASE}/export`);
+      const response = await fetch(`${API_BASE}/artifact/download/${fileId}?version=${version}`);
       if (!response.ok) throw new Error('Artifact download unavailable');
 
       const blob = await response.blob();
+      const contentDisposition = response.headers.get('Content-Disposition');
+      let filename = buildArtifactFilename(fileId);
 
-      const contentDisposition = response.headers.get("Content-Disposition");
-
-      let filename = "metadata.json";
-
-      if (contentDisposition && contentDisposition.includes("filename=")) {
-        filename = contentDisposition
-          .split("filename=")[1]
-          .replace(/"/g, "");
+      if (contentDisposition && contentDisposition.includes('filename=')) {
+        filename = contentDisposition.split('filename=')[1].replace(/"/g, '');
       }
 
       const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-
+      const a = document.createElement('a');
       a.href = url;
       a.download = filename;
-
       document.body.appendChild(a);
       a.click();
-
       a.remove();
       window.URL.revokeObjectURL(url);
     } catch (err) {
@@ -888,6 +907,52 @@ function App() {
               artifactState={artifactState}
               onDownload={handleDownloadArtifact}
             />
+          )}
+
+          {artifacts.length > 0 && (
+            <section className="artifact-list-panel" style={{ marginTop: '2rem', padding: '1.75rem', borderRadius: 'var(--radius-sm)', background: 'var(--bg-secondary)', border: '1px solid var(--border)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', marginBottom: '1rem' }}>
+                <div>
+                  <p className="mono-text" style={{ marginBottom: '0.5rem', color: 'var(--text-secondary)', fontSize: '0.75rem', letterSpacing: '0.08em' }}>Stored artifacts</p>
+                  <h3 style={{ margin: 0, fontSize: '1.15rem', color: 'var(--text-primary)' }}>{artifacts.length} artifact{artifacts.length === 1 ? '' : 's'} available</h3>
+                </div>
+                <button
+                  type="button"
+                  className="btn-secondary"
+                  onClick={loadArtifacts}
+                  style={{ padding: '0.75rem 1rem', borderRadius: '999px', border: '1px solid var(--border)', background: 'transparent', color: 'var(--text-primary)', cursor: 'pointer' }}
+                >
+                  Refresh list
+                </button>
+              </div>
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                {artifacts.map((artifact) => (
+                  <div key={artifact.file_id} style={{ display: 'grid', gap: '0.75rem', padding: '1rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+                      <div>
+                        <strong style={{ fontSize: '0.95rem', color: 'var(--text-primary)' }}>{artifact.filename || artifact.file_id}</strong>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '0.25rem', color: 'var(--text-muted)', fontSize: '0.82rem' }}>
+                          <span>{artifact.pages ? `${artifact.pages} pages` : 'Page count unknown'}</span>
+                          <span>{artifact.artifact_v2_size ? formatBytes(artifact.artifact_v2_size) : formatBytes(artifact.artifact_v1_size)}</span>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        className="btn-secondary"
+                        onClick={() => downloadArtifactById(artifact.file_id)}
+                        style={{ padding: '0.75rem 1rem', borderRadius: '999px', border: '1px solid var(--border)', background: 'transparent', color: 'var(--text-primary)', cursor: 'pointer' }}
+                      >
+                        Download
+                      </button>
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', color: 'var(--text-muted)', fontSize: '0.82rem' }}>
+                      <span>Original: {artifact.original_size ? formatBytes(artifact.original_size) : 'N/A'}</span>
+                      <span>Compressed: {artifact.artifact_v2_size ? formatBytes(artifact.artifact_v2_size) : formatBytes(artifact.artifact_v1_size)}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
           )}
 
           {messages.length === 0 ? (

@@ -1,6 +1,6 @@
 # liteRAG
 
-A production-ready, cost-efficient RAG system for querying large PDFs.
+A production-ready PDF artifact generator that converts large PDF documents into compressed, AI-friendly JSON artifacts and persists them in a local SQLite registry.
 
 ## 🛠️ Tech Stack
 
@@ -26,6 +26,18 @@ A production-ready, cost-efficient RAG system for querying large PDFs.
    ```bash
    uvicorn app.main:app --reload
    ```
+
+### Artifact Endpoints
+
+Once the backend is running, use these endpoints to upload and manage compressed PDF artifacts:
+
+- `POST /upload` — upload a PDF and generate compressed artifact JSON files.
+- `GET /artifacts` — list stored artifact records from the SQLite artifact registry.
+- `GET /artifact/{file_id}` — get metadata for a specific artifact.
+- `GET /artifact/download/{file_id}?version=v2` — download the compressed v2 artifact JSON.
+- `GET /artifact/status?file_id={file_id}` — check artifact readiness and metadata.
+
+> No manual database setup is required. The backend creates `backend/data/artifact_store.db` automatically when it first runs.
 
 ### Frontend
 

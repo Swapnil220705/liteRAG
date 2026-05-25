@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 UPLOAD_DIR = DATA_DIR / "uploads"
-KNOWLEDGE_ARTIFACT_PATH = DATA_DIR / "knowledge_artifact.json"
+ARTIFACT_DIR = DATA_DIR / "artifacts"
 
 load_dotenv(BASE_DIR / ".env")
 
@@ -27,6 +27,7 @@ from app.generation import AnswerGenerator
 from app.query_processing import QueryProcessor
 from app.logging_utils import log_event
 from app.hybrid_ingestion import process_documents as hybrid_process_documents, write_v2_artifact
+from app.artifact_store import ArtifactStore
 
 app = FastAPI(title="liteRAG API")
 
@@ -52,6 +53,8 @@ generator = AnswerGenerator()
 query_processor = QueryProcessor()
 
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+ARTIFACT_DIR.mkdir(parents=True, exist_ok=True)
+artifact_store = ArtifactStore()
 
 class QueryRequest(BaseModel):
     query: str
@@ -262,7 +265,7 @@ def build_weak_context_package(retrieved_chunks, query_type: str) -> dict:
     }
 
 
-def write_knowledge_artifact(file_id: str, chunks) -> None:
+def write_knowledge_artifact(file_id: str, chunks, artifact_path: Path | str | None = None) -> Path:
     original_size = None
     if chunks:
         original_size = chunks[0].get("metadata", {}).get("original_size")
@@ -281,38 +284,38 @@ def write_knowledge_artifact(file_id: str, chunks) -> None:
         ],
     }
 
-    KNOWLEDGE_ARTIFACT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(KNOWLEDGE_ARTIFACT_PATH, "w", encoding="utf-8") as f:
+    destination = Path(artifact_path or ARTIFACT_DIR / f"{file_id}_v1.json")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with open(destination, "w", encoding="utf-8") as f:
         json.dump(artifact, f, indent=2)
+    return destination
 
 
 def clear_knowledge_artifact() -> None:
-    if KNOWLEDGE_ARTIFACT_PATH.exists():
-        KNOWLEDGE_ARTIFACT_PATH.unlink()
+    legacy_path = DATA_DIR / "knowledge_artifact.json"
+    if legacy_path.exists():
+        legacy_path.unlink()
 
 
-def get_artifact_status_payload() -> dict:
-    if not KNOWLEDGE_ARTIFACT_PATH.exists():
+def get_artifact_status_payload(file_id: str | None = None) -> dict:
+    if file_id:
+        artifact = artifact_store.get_artifact(file_id)
+        if not artifact:
+            return {
+                "ready": False,
+                "file_id": file_id,
+            }
+
         return {
-            "ready": False,
-            "artifact_path": KNOWLEDGE_ARTIFACT_PATH.name,
-            "artifact_size": 0,
-            "original_size": 0,
-            "file_id": None,
+            "ready": True,
+            "artifact": artifact,
         }
 
-    try:
-        with open(KNOWLEDGE_ARTIFACT_PATH, "r", encoding="utf-8") as f:
-            artifact = json.load(f)
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail="Failed to read artifact metadata.") from exc
-
+    artifacts = artifact_store.list_artifacts()
     return {
-        "ready": True,
-        "artifact_path": KNOWLEDGE_ARTIFACT_PATH.name,
-        "artifact_size": KNOWLEDGE_ARTIFACT_PATH.stat().st_size,
-        "original_size": artifact.get("original_size") or 0,
-        "file_id": artifact.get("file_id"),
+        "ready": bool(artifacts),
+        "count": len(artifacts),
+        "artifacts": artifacts,
     }
 
 @app.get("/status")
@@ -332,7 +335,6 @@ async def reset_session():
     try:
         vector_store.reset()
         cache.clear()
-        clear_knowledge_artifact()
     except Exception as exc:
         raise HTTPException(status_code=500, detail="Failed to reset session state.") from exc
 
@@ -340,34 +342,62 @@ async def reset_session():
 
 
 @app.get("/artifact/status")
-async def artifact_status():
-    return get_artifact_status_payload()
+async def artifact_status(file_id: str | None = None):
+    return get_artifact_status_payload(file_id=file_id)
+
+
+@app.get("/artifacts")
+async def list_artifacts():
+    return {"artifacts": artifact_store.list_artifacts()}
+
+
+@app.get("/artifact/{file_id}")
+async def get_artifact(file_id: str):
+    artifact = artifact_store.get_artifact(file_id)
+    if not artifact:
+        raise HTTPException(status_code=404, detail="Artifact not found.")
+    return artifact
+
+
+@app.get("/artifact/download/{file_id}")
+def download_artifact(file_id: str, version: str = "v2"):
+    artifact = artifact_store.get_artifact(file_id)
+    if not artifact:
+        raise HTTPException(status_code=404, detail="Artifact not found.")
+
+    path_str = artifact.get("artifact_v2_path") if version == "v2" else artifact.get("artifact_v1_path")
+    if not path_str:
+        raise HTTPException(status_code=404, detail=f"Artifact version '{version}' is not available.")
+
+    file_path = Path(path_str)
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Artifact file not found.")
+
+    return FileResponse(
+        path=file_path,
+        filename=file_path.name,
+        media_type="application/json",
+    )
+
 
 @app.get("/export")
-def export_knowledge():
-    metadata_path = os.path.join(BASE_DIR, "data", "metadata.json")
-    if not os.path.exists(metadata_path):
-        raise HTTPException(status_code=404, detail="Metadata file not found")
+def export_knowledge(file_id: str, version: str = "v2"):
+    artifact = artifact_store.get_artifact(file_id)
+    if not artifact:
+        raise HTTPException(status_code=404, detail="Artifact not found.")
 
-    with open(metadata_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    path_str = artifact.get("artifact_v2_path") if version == "v2" else artifact.get("artifact_v1_path")
+    if not path_str:
+        raise HTTPException(status_code=404, detail=f"Artifact version '{version}' is not available.")
 
-    pretty_json = json.dumps(data, indent=2)
+    file_path = Path(path_str)
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Artifact file not found.")
 
-    file_id = data.get("file_id") if isinstance(data, dict) else None
-
-    if file_id:
-        filename = f"{file_id}.json"
-    else:
-        from datetime import datetime
-        filename = f"metadata_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-
-    return Response(
-        content=pretty_json,
+    return FileResponse(
+        path=file_path,
+        filename=file_path.name,
         media_type="application/json",
-        headers={
-            "Content-Disposition": f'attachment; filename="{filename}"'
-        }
     )
 
 @app.post("/upload")
@@ -418,11 +448,10 @@ async def upload_pdf(file: UploadFile = File(...)):
     
     print(f"[{file_id}] Stage: Indexing...")
     try:
-        clear_knowledge_artifact()
         vector_store.clear()
         vector_store.add_documents(embeddings, chunks)
         vector_store.save()
-        write_knowledge_artifact(file_id, chunks)
+        v1_path = write_knowledge_artifact(file_id, chunks)
         log_event("upload_indexed", file_id=file_id, pages=len(docs), chunks=len(chunks))
     except Exception as exc:
         raise HTTPException(status_code=500, detail="Failed to index document.") from exc
@@ -433,9 +462,8 @@ async def upload_pdf(file: UploadFile = File(...)):
     except Exception as exc:
         raise HTTPException(status_code=500, detail="Failed to clear query cache.") from exc
 
-    # --- V2 Hybrid Ingestion (non-blocking enrichment) ---
-    # Reuses the SAME docs list from PDFIngestor above — identical source text.
-    # Any v2 failure is isolated: logged and skipped, v1 response is unaffected.
+    v2_path = None
+    v2_size = None
     try:
         print(f"[{file_id}] Stage: Building v2 knowledge artifact...")
         v2_artifact = hybrid_process_documents(
@@ -443,7 +471,9 @@ async def upload_pdf(file: UploadFile = File(...)):
             pdf_path=str(file_path),   # pdfplumber table enrichment only
             file_id=file_id,           # correlate with v1 artifact
         )
-        write_v2_artifact(v2_artifact)
+        v2_path = ARTIFACT_DIR / f"{file_id}_v2.json"
+        write_v2_artifact(v2_artifact, output_path=str(v2_path))
+        v2_size = v2_path.stat().st_size
         log_event("upload_v2_indexed", file_id=file_id,
                   sections=v2_artifact["stats"]["total_sections"],
                   tables=v2_artifact["stats"]["total_tables"])
@@ -451,7 +481,32 @@ async def upload_pdf(file: UploadFile = File(...)):
         print(f"[{file_id}] WARNING: v2 ingestion failed (non-fatal): {exc}")
         log_event("upload_v2_failed", file_id=file_id, error=str(exc))
 
-    return {"message": "PDF processed and indexed successfully", "file_id": file_id, "pages": len(docs)}
+    try:
+        artifact_store.add_artifact(
+            file_id=file_id,
+            filename=file.filename,
+            source=docs[0].get("metadata", {}).get("source"),
+            pages=len(docs),
+            original_size=original_size,
+            artifact_v1_path=str(v1_path),
+            artifact_v1_size=v1_path.stat().st_size,
+            artifact_v2_path=str(v2_path) if v2_path else None,
+            artifact_v2_size=v2_size,
+            status="ready",
+            metadata={"v2_created": bool(v2_path)},
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail="Failed to save artifact metadata.") from exc
+
+    return {
+        "message": "PDF processed and indexed successfully",
+        "file_id": file_id,
+        "pages": len(docs),
+        "artifact_v1_path": str(v1_path),
+        "artifact_v1_size": v1_path.stat().st_size,
+        "artifact_v2_path": str(v2_path) if v2_path else None,
+        "artifact_v2_size": v2_size,
+    }
 
 @app.post("/query")
 async def query_document(request: QueryRequest):

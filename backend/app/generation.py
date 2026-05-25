@@ -1,12 +1,16 @@
 from google import genai
-from typing import List, Dict, Optional
+from typing import Dict, Optional
 import os
 
 class AnswerGenerator:
     def __init__(self, model_name: str = "gemini-3-flash-preview"):
-        # API key will be picked from GOOGLE_API_KEY environment variable
-        self.client = genai.Client()
+        self.client = None
         self.model_name = model_name
+
+    def _get_client(self):
+        if self.client is None:
+            self.client = genai.Client()
+        return self.client
 
     def generate_answer(self, query: str, context: str) -> str:
         """
